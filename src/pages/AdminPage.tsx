@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, Eye, EyeOff, BarChart3, Settings, RefreshCw, CheckCircle2, Globe, Megaphone } from 'lucide-react';
+import { ShieldCheck, Lock, Eye, EyeOff, BarChart3, Settings, CheckCircle2, Globe, Megaphone } from 'lucide-react';
 import { useAnalyticsStore } from '../store/useAnalyticsStore';
 import { useResumeStore } from '../store/useResumeStore';
 
@@ -110,7 +110,7 @@ export const AdminPage: React.FC = () => {
             <span className="text-xs font-bold uppercase">Total Saved Resumes</span>
             <BarChart3 className="w-4 h-4 text-brand-500" />
           </div>
-          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{resumes?.length || 1}</p>
+          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{Object.keys(resumes || {}).length}</p>
           <span className="text-[11px] text-emerald-500 font-semibold">Active in local state</span>
         </div>
 
