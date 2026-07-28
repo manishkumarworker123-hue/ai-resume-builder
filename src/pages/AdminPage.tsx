@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, Eye, EyeOff, BarChart3, Settings, AlertCircle, RefreshCw, CheckCircle2, Globe, Megaphone } from 'lucide-react';
+import { ShieldCheck, Lock, Eye, EyeOff, BarChart3, Settings, RefreshCw, CheckCircle2, Globe, Megaphone } from 'lucide-react';
 import { useAnalyticsStore } from '../store/useAnalyticsStore';
 import { useResumeStore } from '../store/useResumeStore';
 
@@ -11,7 +11,7 @@ export const AdminPage: React.FC = () => {
   const [showPasscode, setShowPasscode] = useState(false);
   const [error, setError] = useState('');
 
-  const { metrics, resetAnalytics } = useAnalyticsStore();
+  const analytics = useAnalyticsStore();
   const { resumes } = useResumeStore();
 
   const ADMIN_PASSCODE = 'admin123'; // Default admin passcode
@@ -90,7 +90,7 @@ export const AdminPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-brand-400" />
-            <h1 className="text-xl font-bold tracking-tight">AI Resume PRO — Admin Control Center</h1>
+            <h1 className="text-xl font-bold tracking-tight">AI Resume PRO — Owner Control Center</h1>
           </div>
           <p className="text-xs text-slate-400 mt-1">Manage app monetization, user metrics, deployment status, and system configurations.</p>
         </div>
@@ -107,11 +107,11 @@ export const AdminPage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
           <div className="flex justify-between items-center text-slate-500 mb-2">
-            <span className="text-xs font-bold uppercase">Total Resumes Created</span>
+            <span className="text-xs font-bold uppercase">Total Saved Resumes</span>
             <BarChart3 className="w-4 h-4 text-brand-500" />
           </div>
-          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{resumes.length || 1}</p>
-          <span className="text-[11px] text-emerald-500 font-semibold">Active in browser state</span>
+          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{resumes?.length || 1}</p>
+          <span className="text-[11px] text-emerald-500 font-semibold">Active in local state</span>
         </div>
 
         <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
@@ -119,7 +119,7 @@ export const AdminPage: React.FC = () => {
             <span className="text-xs font-bold uppercase">Total Downloads</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
           </div>
-          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{metrics.totalDownloads}</p>
+          <p className="text-2xl font-extrabold text-slate-900 dark:text-white">{analytics.downloadCount}</p>
           <span className="text-[11px] text-slate-400">PDF, TXT & JSON</span>
         </div>
 
@@ -156,7 +156,7 @@ export const AdminPage: React.FC = () => {
           <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 space-y-2 text-xs">
             <div className="flex justify-between">
               <span className="font-semibold text-slate-600 dark:text-slate-300">Verification Tag:</span>
-              <span className="font-mono text-emerald-600 font-bold">bdaf39...544</span>
+              <span className="font-mono text-emerald-600 font-bold">bdaf393937c9c7d12a7359f223c8d544</span>
             </div>
             <div className="flex justify-between">
               <span className="font-semibold text-slate-600 dark:text-slate-300">Push Ad Zone:</span>
@@ -172,25 +172,21 @@ export const AdminPage: React.FC = () => {
           </p>
         </div>
 
-        {/* System Diagnostics */}
+        {/* System Info */}
         <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-4">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Settings className="w-4 h-4 text-brand-500" />
-            App Health & Reset Tools
+            App Control & Quick Actions
           </h3>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+          <div className="space-y-3 text-xs">
+            <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
               <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Reset Analytics Metrics</p>
-                <p className="text-[11px] text-slate-500">Clears local download and usage counts</p>
+                <p className="font-bold text-slate-900 dark:text-white">Netlify Password Protection Notice</p>
+                <p className="text-slate-500">Disable password in Netlify Site Configuration → Access Control.</p>
               </div>
-              <button
-                onClick={resetAnalytics}
-                className="px-3 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-950/50 text-rose-600 font-semibold text-xs border border-rose-200 dark:border-rose-900 hover:bg-rose-100 flex items-center gap-1"
-              >
-                <RefreshCw className="w-3.5 h-3.5" />
-                Reset
-              </button>
+              <a href="https://app.netlify.com" target="_blank" rel="noreferrer" className="px-3 py-1.5 rounded-lg bg-brand-500 text-white font-bold hover:bg-brand-600">
+                Netlify Dash
+              </a>
             </div>
           </div>
         </div>
