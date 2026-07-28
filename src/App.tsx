@@ -11,6 +11,7 @@ import { BlogPage } from './pages/BlogPage';
 import { AnalyticsPage } from './pages/AnalyticsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SEORolePage } from './pages/SEORolePage';
+import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -42,6 +43,7 @@ export const App: React.FC = () => {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/:roleSlug" element={<SEORolePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
